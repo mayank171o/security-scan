@@ -1,0 +1,80 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.PersonController.index
+POST    /person                     controllers.PersonController.addPerson
+GET     /persons                    controllers.PersonController.getPersons
+
+GET     /cmd/vulnerable1            controllers.CommandController.vulnerable1(value:String)
+GET     /cmd/vulnerable2            controllers.CommandController.vulnerable2(value:String)
+GET     /cmd/vulnerable3            controllers.CommandController.vulnerable3(value:String)
+GET     /cmd/vulnerable4            controllers.CommandController.vulnerable4(value:String)
+GET     /cmd/vulnerable5            controllers.CommandController.vulnerable5(value:String)
+GET     /cmd/vulnerable6            controllers.CommandController.vulnerable6(value:String)
+
+GET     /cmd/safe1                  controllers.CommandController.safe1()
+
+GET     /xss/vulnerable1            controllers.XssController.vulnerable1(value:String)
+GET     /xss/vulnerable2            controllers.XssController.vulnerable2(value:String)
+GET     /xss/vulnerable3            controllers.XssController.vulnerable3(value:String, contentType:String)
+GET     /xss/vulnerable4            controllers.XssController.vulnerable4(value:String)
+GET     /xss/potentiallyVulnerable  controllers.XssController.potentiallyVulnerable(value:String)
+GET     /xss/variousSafe            controllers.XssController.variousSafe(value:String)
+
+GET     /redir/redirect1            controllers.RedirectController.redirect1(url:String)
+GET     /redir/redirect2            controllers.RedirectController.redirect2(url:String)
+
+GET     /rand/random1               controllers.RandomValueController.random1()
+GET     /rand/random2               controllers.RandomValueController.random2()
+GET     /rand/random3               controllers.RandomValueController.random3()
+GET     /rand/random4               controllers.RandomValueController.random4()
+GET     /rand/random5               controllers.RandomValueController.random5_various()
+
+GET     /data/vulnerable1           controllers.SensitiveDataExposureController.vulnerable1(value:String)
+GET     /data/vulnerable2           controllers.SensitiveDataExposureController.vulnerable2(value:String)
+GET     /data/vulnerable3           controllers.SensitiveDataExposureController.vulnerable3(value:String)
+GET     /data/vulnerableCookie1     controllers.SensitiveDataExposureController.vulnerableCookie1(value:String)
+GET     /data/vulnerableCookie2     controllers.SensitiveDataExposureController.vulnerableCookie2(value:String)
+GET     /data/vulnerableCookie3     controllers.SensitiveDataExposureController.vulnerableCookie3(value:String)
+GET     /data/safePlayConfig        controllers.SensitiveDataExposureController.safePlayConfig()
+GET     /data/safeEnvProperty       controllers.SensitiveDataExposureController.safeEnvProperty()
+GET     /data/safeUntainted         controllers.SensitiveDataExposureController.safeUntainted(value:String)
+GET     /data/safeNoSensitiveData   controllers.SensitiveDataExposureController.safeNoSensitiveData(value:String)
+
+GET     /sql/vulnerableAnorm1       controllers.SqlController.vulnerableAnorm1(value:String)
+GET     /sql/vulnerableAnorm2       controllers.SqlController.vulnerableAnorm2(value:String)
+GET     /sql/vulnerableAnorm3       controllers.SqlController.vulnerableAnorm3(value:String)
+GET     /sql/vulnerableAnorm4       controllers.SqlController.vulnerableAnorm4(value:String)
+GET     /sql/vulnerableAnorm5       controllers.SqlController.vulnerableAnorm5(oldValue:String, newValue:String)
+GET     /sql/vulnerableAnorm6       controllers.SqlController.vulnerableAnorm6(oldValue:String, newValue:String)
+GET     /sql/vulnerableAnorm7       controllers.SqlController.vulnerableAnorm7(oldValue:String, newValue:String)
+GET     /sql/vulnerableAnorm8       controllers.SqlController.vulnerableAnorm8(oldValue:String, newValue:String)
+GET     /sql/vulnerableAnorm9       controllers.SqlController.vulnerableAnorm9(id:Int, name:String, age:Int)
+GET     /sql/vulnerableAnorm10      controllers.SqlController.vulnerableAnorm10(id:Int, name:String, age:Int)
+GET     /sql/vulnerableAnorm11      controllers.SqlController.vulnerableAnorm11(oldValue:String, newValue:String)
+GET     /sql/variousSafeAnormSelect controllers.SqlController.variousSafeAnormSelect(value:String)
+GET     /sql/variousSafeAnormUpdate controllers.SqlController.variousSafeAnormUpdate(oldValue:String, newValue:String)
+GET     /sql/variousSafeAnormInsert controllers.SqlController.variousSafeAnormInsert(id:Int, name:String, age:Int)
+GET     /sql/variousSafeAnormBatch  controllers.SqlController.variousSafeAnormBatch(oldValue:String, newValue:String)
+
+GET     /sql/vulnerableSlick1       controllers.SqlController.vulnerableSlick1(value:String)
+GET     /sql/variousSafeSlick1      controllers.SqlController.variousSafeSlick1(value:String)
+GET     /sql/vulnerableSlick2       controllers.SqlController.vulnerableSlick2(oldValue:String, newValue:String)
+GET     /sql/variousSafeSlick2      controllers.SqlController.variousSafeSlick2(oldValue:String, newValue:String)
+
+GET     /path/vulnerableIn          controllers.PathTraversalController.vulnerableIn(value:String)
+GET     /path/vulnerableOut         controllers.PathTraversalController.vulnerableOut(value:String)
+GET     /path/safeIn                controllers.PathTraversalController.safeIn(value:String)
+GET     /path/safeOut               controllers.PathTraversalController.safeOut(value:String)
+
+GET     /ssrf/vulnerableGet         controllers.SSRFController.vulnerableGet(value:String)
+GET     /ssrf/vulnerablePost        controllers.SSRFController.vulnerablePost(value:String, postValue:String)
+GET     /ssrf/safeGetNotTainted     controllers.SSRFController.safeGetNotTainted()
+GET     /ssrf/safePostNotTainted    controllers.SSRFController.safePostNotTainted()
+GET     /ssrf/safeGetWithWhitelist  controllers.SSRFController.safeGetWithWhitelist(value:String, amount:Int)
+GET     /ssrf/safePostWithWhitelist controllers.SSRFController.safePostWithWhitelist(value:String, amount:Int)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
